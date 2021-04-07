@@ -11,7 +11,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: 'https://listlucas.netlify.app/',
+    origin: process.env.BASE_URL,
   }),
 );
 app.use(express.json());

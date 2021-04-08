@@ -9,11 +9,12 @@ import './database';
 
 const app = express();
 
-app.use(
-  cors({
-    origin: process.env.BASE_URL,
-  }),
-);
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://listlucas.netlify.app/');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  app.use(cors());
+  next();
+});
 app.use(express.json());
 app.use(routes);
 

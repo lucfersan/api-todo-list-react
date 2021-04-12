@@ -8,9 +8,9 @@ import UserModel from '../models/UserModel';
 class SessionController {
   async store(req: Request, res: Response) {
     const userRepository = getRepository(UserModel);
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
-    const user = await userRepository.findOne({ where: { email } });
+    const user = await userRepository.findOne({ where: { username } });
 
     if (!user) {
       return res.status(404).json({ error: 'User not found.' });

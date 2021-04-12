@@ -16,15 +16,15 @@ class UserController {
 
   async store(req: Request, res: Response) {
     const userRepository = getRepository(UserModel);
-    const { name, email, password } = req.body;
+    const { username, password } = req.body;
 
-    const userExists = await userRepository.findOne({ where: { email } });
+    const userExists = await userRepository.findOne({ where: { username } });
 
     if (userExists) {
       return res.status(409).json({ error: 'User already exists.' });
     }
 
-    const user = userRepository.create({ name, email, password });
+    const user = userRepository.create({ username, password });
     await userRepository.save(user);
 
     delete user.password;
@@ -35,7 +35,7 @@ class UserController {
   async update(req: Request, res: Response) {
     const userRepository = getRepository(UserModel);
     const { id } = req.params;
-    const { name, email, password } = req.body;
+    const { username, password } = req.body;
 
     const validId = validator.isUUID(id);
 
@@ -50,7 +50,7 @@ class UserController {
     }
 
     user.password = password;
-    await userRepository.save(user);
+    await userRepository.update(id, { username });
 
     return res.status(204).json(user);
   }

@@ -15,10 +15,7 @@ class UserModel {
   id: string;
 
   @Column()
-  name: string;
-
-  @Column()
-  email: string;
+  username: string;
 
   @Column()
   password: string;

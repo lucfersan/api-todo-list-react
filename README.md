@@ -26,8 +26,6 @@ And to give the code a pattern, I used the VsCode prettier extension.
 
 I used docker to create the containers for the database.
 
-I hosted this project with the free package of Heroku, so you can check the database on the url at the bottom of this README.
-
 ### Built With
 
 - [Typescript](https://www.typescriptlang.org/)
